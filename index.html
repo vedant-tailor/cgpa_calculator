@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="GTU CGPA Calculator - Calculate your CGPA, CPI, and percentage easily">
+    <meta name="keywords" content="GTU, CGPA calculator, CPI calculator, grade point average, Gujarat Technical University">
+    <meta name="author" content="GTU CGPA Calculator">
+    <title>GTU CGPA Calculator</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="dark-mode">
+    <header>
+        <div class="header-content">
+            <div class="header-text">
+                <h1>GTU CGPA Calculator</h1>
+                <p>Calculate your CGPA, CPI, and percentage easily</p>
+            </div>
+            <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark/light mode">
+                <i class="fas fa-sun"></i>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <section class="calculator-container">
+            <div class="info-box">
+                <h3>About GTU Grading System</h3>
+                <div class="tooltip-container">
+                    <p><strong>SPI</strong> <i class="fas fa-info-circle tooltip-icon"></i></p>
+                    <span class="tooltip-text">Semester Performance Index - Grade points earned in a single semester</span>
+                </div>
+                <div class="tooltip-container">
+                    <p><strong>CPI</strong> <i class="fas fa-info-circle tooltip-icon"></i></p>
+                    <span class="tooltip-text">Cumulative Performance Index - Cumulative grade points earned up to the current semester</span>
+                </div>
+                <div class="tooltip-container">
+                    <p><strong>CGPA</strong> <i class="fas fa-info-circle tooltip-icon"></i></p>
+                    <span class="tooltip-text">Cumulative Grade Point Average - Final grade point average after completing all semesters</span>
+                </div>
+            </div>
+
+            <form id="cgpa-form">
+                <div class="form-tabs">
+                    <button type="button" class="tab-btn active" data-tab="semester-tab">Semester Calculation</button>
+                    <button type="button" class="tab-btn" data-tab="cgpa-tab">Direct CGPA Conversion</button>
+                </div>
+
+                <div id="semester-tab" class="tab-content active">
+                    <h3>Semester Grade Points</h3>
+
+                    <div id="subjects-container">
+                        <!-- Subject 1 -->
+                        <div class="subject-row">
+                            <div class="form-group">
+                                <label for="subject1">Subject 1:</label>
+                                <input type="text" id="subject1" class="subject-name" placeholder="Subject Name">
+                            </div>
+                            <div class="form-group">
+                                <label for="grade1">Grade Points:</label>
+                                <input type="number" id="grade1" class="grade-input" min="0" max="10" step="0.1" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="credit1">Credit Hours:</label>
+                                <input type="number" id="credit1" class="credit-input" min="1" max="7" step="1" required>
+                            </div>
+                        </div>
+
+                        <!-- Subject 2 -->
+                        <div class="subject-row">
+                            <div class="form-group">
+                                <label for="subject2">Subject 2:</label>
+                                <input type="text" id="subject2" class="subject-name" placeholder="Subject Name">
+                            </div>
+                            <div class="form-group">
+                                <label for="grade2">Grade Points:</label>
+                                <input type="number" id="grade2" class="grade-input" min="0" max="10" step="0.1" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="credit2">Credit Hours:</label>
+                                <input type="number" id="credit2" class="credit-input" min="1" max="7" step="1" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="button" id="add-subject-btn">+ Add Subject</button>
+                        <button type="button" id="remove-subject-btn">- Remove Subject</button>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="semester-number">Semester Number:</label>
+                        <input type="number" id="semester-number" min="1" max="8" step="1" value="1" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="previous-cpi">Previous CPI (if any):</label>
+                        <input type="number" id="previous-cpi" min="0" max="10" step="0.01" placeholder="Leave empty for first semester">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="previous-credits">Previous Total Credits (if any):</label>
+                        <input type="number" id="previous-credits" min="0" step="1" placeholder="Leave empty for first semester">
+                    </div>
+                </div>
+
+                <div id="cgpa-tab" class="tab-content">
+                    <h3>Direct CGPA Conversion</h3>
+                    <div class="form-group">
+                        <label for="direct-cgpa">Enter your CGPA:</label>
+                        <input type="number" id="direct-cgpa" min="0" max="10" step="0.01" placeholder="Enter CGPA">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Conversion Method:</label>
+                        <div class="radio-group">
+                            <input type="radio" id="formula1" name="conversion-method" value="formula1" checked>
+                            <label for="formula1">(CGPA - 0.5) × 10</label>
+                        </div>
+                        <div class="radio-group">
+                            <input type="radio" id="formula2" name="conversion-method" value="formula2">
+                            <label for="formula2">CGPA × 9.5</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <button type="submit" id="calculate-btn">Calculate</button>
+                </div>
+            </form>
+
+            <div id="error-message" class="error-message"></div>
+
+            <div id="result-container" class="result-container hidden">
+                <h2>Calculation Results</h2>
+                <div class="result-grid">
+                    <div class="result-item">
+                        <span class="result-label">Current SPI:</span>
+                        <span id="result-spi" class="result-value"></span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Current CPI/CGPA:</span>
+                        <span id="result-cpi" class="result-value"></span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Percentage:</span>
+                        <span id="result-percentage" class="result-value"></span>
+                    </div>
+                </div>
+
+                <div class="result-actions">
+                    <button id="save-result-btn"><i class="fas fa-save"></i> Save Result</button>
+                    <button id="export-pdf-btn"><i class="fas fa-file-pdf"></i> Export as PDF</button>
+                    <button id="export-csv-btn"><i class="fas fa-file-csv"></i> Export as CSV</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="history-container hidden" id="history-container">
+            <h2>Calculation History</h2>
+            <div id="history-list" class="history-list">
+                <!-- History items will be added here dynamically -->
+            </div>
+            <button id="clear-history-btn">Clear History</button>
+        </section>
+
+        <section class="chart-container hidden" id="chart-container">
+            <h2>Performance Chart</h2>
+            <div class="chart-wrapper">
+                <canvas id="performance-chart"></canvas>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>This calculator provides estimates based on GTU grading system. Actual results may vary.</p>
+        <p>&copy; <span id="current-year"></span> GTU CGPA Calculator</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
