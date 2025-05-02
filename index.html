@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="GTU CGPA Calculator - Calculate your CGPA, CPI, and percentage easily">
-    <meta name="keywords" content="GTU, CGPA calculator, CPI calculator, grade point average, Gujarat Technical University">
+    <meta name="description" content="Calculate your GTU CGPA, SPI, and CPI instantly with our free calculator. Convert grade points to percentage easily. Perfect for Gujarat Technical University students.">
+    <meta name="keywords" content="GTU, CGPA calculator, CPI calculator, SPI calculator, grade point average, Gujarat Technical University">
     <meta name="author" content="GTU CGPA Calculator">
-    <title>GTU CGPA Calculator</title>
+    <title>GTU CGPA Calculator | SPI & CPI Calculator for GTU Students</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -19,7 +19,7 @@
                 <p>Calculate your CGPA, CPI, and percentage easily</p>
             </div>
             <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark/light mode">
-                <i class="fas fa-moon"></i>
+                <i class="fas fa-moon" aria-hidden="true"></i>
             </button>
         </div>
     </header>
@@ -29,15 +29,15 @@
             <div class="info-box">
                 <h3>About GTU Grading System</h3>
                 <div class="tooltip-container">
-                    <p><strong>SPI</strong> <i class="fas fa-info-circle tooltip-icon"></i></p>
+                    <p><strong>SPI</strong> <i class="fas fa-info-circle tooltip-icon" aria-label="Information about SPI calculation in GTU grading system"></i></p>
                     <span class="tooltip-text">Semester Performance Index - Grade points earned in a single semester</span>
                 </div>
                 <div class="tooltip-container">
-                    <p><strong>CPI</strong> <i class="fas fa-info-circle tooltip-icon"></i></p>
+                    <p><strong>CPI</strong> <i class="fas fa-info-circle tooltip-icon" aria-label="Information about CPI calculation in GTU grading system"></i></p>
                     <span class="tooltip-text">Cumulative Performance Index - Cumulative grade points earned up to the current semester</span>
                 </div>
                 <div class="tooltip-container">
-                    <p><strong>CGPA</strong> <i class="fas fa-info-circle tooltip-icon"></i></p>
+                    <p><strong>CGPA</strong> <i class="fas fa-info-circle tooltip-icon" aria-label="Information about CGPA calculation in GTU grading system"></i></p>
                     <span class="tooltip-text">Cumulative Grade Point Average - Final grade point average after completing all semesters</span>
                 </div>
             </div>
@@ -151,9 +151,9 @@
                 </div>
 
                 <div class="result-actions">
-                    <button id="save-result-btn"><i class="fas fa-save"></i> Save Result</button>
-                    <button id="export-pdf-btn"><i class="fas fa-file-pdf"></i> Export as PDF</button>
-                    <button id="export-csv-btn"><i class="fas fa-file-csv"></i> Export as CSV</button>
+                    <button id="save-result-btn"><i class="fas fa-save" aria-hidden="true"></i> Save Result</button>
+                    <button id="export-pdf-btn"><i class="fas fa-file-pdf" aria-hidden="true"></i> Export as PDF</button>
+                    <button id="export-csv-btn"><i class="fas fa-file-csv" aria-hidden="true"></i> Export as CSV</button>
                 </div>
             </div>
         </section>
